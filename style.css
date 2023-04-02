@@ -1,0 +1,38 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: x-large;
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #6463BD;
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+}
+.a1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+input[type=submit] {
+  background-color: #FFFFFF;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 15px 30px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.a_True{
+  color: rgb(35, 196, 43);
+}
+.a_False{
+  color: rgb(214, 55, 44);
+}
