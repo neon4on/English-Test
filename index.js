@@ -17,22 +17,12 @@ document.getElementById("clickMe").onclick = function () {
         let scoreValue = score.value;
         if (user.step < 10){
             switch(scoreValue){
-            case "Биноколь": 
-                console.log(notRightAnswer);
-                user.upStepNotRight();
-                user.showStep();
-                break;
-            case "Очки":
-                console.log(notRightAnswer);
-                user.upStepNotRight();
-                user.showStep();
-                break;
-            case "Тема": 
+            case "1": 
                 console.log(rightAnswer);
                 user.upStepRight();
                 user.showStep();
                 break;
-            case "Теория":
+            case "0":
                 console.log(notRightAnswer);
                 user.upStepNotRight();
                 user.showStep();
@@ -45,7 +35,6 @@ document.getElementById("clickMe").onclick = function () {
         }
     }
     if (user.scores <= 4){
-        user.scores = 0;
         scoreBool = "Ещё стоит подучитьcя";
         liFirst.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_False">${scoreBool}</a>`;
     }
@@ -65,7 +54,6 @@ let user = {
     },
     upStepNotRight() {
         this.step++;
-        this.scores--;
     },
     showStep: function() { // показывает текущий уровень вопроса
       console.log("Шаг: " + this.step);
