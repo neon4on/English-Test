@@ -1,21 +1,18 @@
-"use strict"
+"use strict" // Делаем код строгим
 
-let liFirst = document.createElement('li');
+const li = document.createElement('li');
+const notRightAnswer = "He верно";
+const rightAnswer = "Верно";
+const form = document.getElementById("myForm");
 let scoreBool;
-let i = 1;
-
-let notRightAnswer = "He верно";
-let rightAnswer = "Верно";
-
-var form = document.getElementById("myForm");
-function handleForm(event) { event.preventDefault(); } 
 
 document.getElementById("clickMe").onclick = function () { 
+    const NUMBER_OF_BUTTONS = document.querySelectorAll(`input[type=radio]:checked`).length; //10
     form.addEventListener('submit', handleForm);
-    for (i = 1; i < 11; i++){
+    for (let i = 1; i < NUMBER_OF_BUTTONS + 1; i++){
         let score = document.querySelector(`input[name="item${i}"]:checked`);
         let scoreValue = score.value;
-        if (user.step < 10){
+        if (user.step < NUMBER_OF_BUTTONS){
             switch(scoreValue){
             case "1": 
                 console.log(rightAnswer);
@@ -35,17 +32,17 @@ document.getElementById("clickMe").onclick = function () {
         }
     }
     if (user.scores <= 4){
-        scoreBool = "Ещё стоит подучитьcя";
-        liFirst.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_False">${scoreBool}</a>`;
+        scoreBool = "Ещё стоит подучиться";
+        li.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_False">${scoreBool}</a>`;
     }
     else{
         scoreBool = "Крутой";
-        liFirst.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_True">${scoreBool}</a>`;
+        li.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_True">${scoreBool}</a>`;
     }
-    ol.prepend(liFirst);
+    ol.appendChild(li);
 }
 
-let user = {
+let user = { // Компонент очков и шагов пользователя
     scores: 0,
     step: 0,
     upStepRight() {
@@ -55,12 +52,12 @@ let user = {
     upStepNotRight() {
         this.step++;
     },
-    showStep: function() { // показывает текущий уровень вопроса
+    showStep: function() { // Показывает текущий уровень вопроса
       console.log("Шаг: " + this.step);
       console.log("Очки: " + this.scores);
       console.log("--------------------------------------");
     }
 };
 
-
+function handleForm(event) { event.preventDefault(); } 
 
