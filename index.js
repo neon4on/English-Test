@@ -1,20 +1,28 @@
-"use strict" // Делаем код строгим
+"use strict" // Строгий режим
 
 const li = document.createElement('li');
 const notRightAnswer = "He верно";
 const rightAnswer = "Верно";
 const form = document.getElementById("myForm");
+const sendResult = document.getElementById("clickMe");
 let scoreBool;
 
-document.getElementById("clickMe").onclick = function () { 
-    const NUMBER_OF_BUTTONS = document.querySelectorAll(`input[type=radio]:checked`).length; 
-    form.addEventListener('submit', handleForm);
-    scoreCount(NUMBER_OF_BUTTONS);
-    userResult();
-    ol.appendChild(li);
+const allResult = function(){
+    try{
+        const NUMBER_OF_BUTTONS = document.querySelectorAll(`input[type=radio]:checked`).length; 
+        form.addEventListener('submit', handleForm);
+        scoreCount(NUMBER_OF_BUTTONS);
+        userResult();
+        ol.appendChild(li);
+    } catch(error){
+        console.log(error);
+        alert("Извините, в переданных данных имеется ошибка => check консоль разработчика F12");
+    }
 }
 
-const scoreCount = function(NUMBER_OF_BUTTONS){    //function expression
+sendResult.addEventListener("click", allResult);
+
+const scoreCount = function(NUMBER_OF_BUTTONS){    
     for (let i = 1; i < NUMBER_OF_BUTTONS + 1; i++){
         let score = document.querySelector(`input[name="item${i}"]:checked`);
         let scoreValue = score.value;
@@ -39,7 +47,7 @@ const scoreCount = function(NUMBER_OF_BUTTONS){    //function expression
     }
 }
 
-const userResult = function(){    //function expression
+const userResult = function(){ 
     if (user.scores <= 4){
         scoreBool = "Ещё стоит подучиться";
         li.innerHTML = `<strong> ${user.scores} </strong> - <a class="a_False">${scoreBool}</a>`;
@@ -50,7 +58,7 @@ const userResult = function(){    //function expression
     } 
 }
 
-let user = {    // Компонент очков и шагов пользователя
+const user = {    // Компонент очков и шагов пользователя
     scores: 0,
     step: 0,
     upStepRight() {
@@ -67,5 +75,7 @@ let user = {    // Компонент очков и шагов пользова�
     }
 };
 
-function handleForm(event) { event.preventDefault(); }    //function declaration
+const handleForm = function(event){
+    event.preventDefault();
+}
 
