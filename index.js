@@ -30,20 +30,6 @@ sendResult.addEventListener("click", allResult);
 // const ParseData = function(){
 //     // создадим объект FormData и добавим в него данные из формы
 //     const formData = new FormData(document.getElementById("myForm"));
-//     // разбираем строку json, который вернул сервер и помещаем её в переменную data
-//     const data = JSON.parse(this.responseText);
-//     // создаём переменную, в которую будем складывать результат работы (маркированный список)
-//     const output = '<ul>';
-//     for (let key in data) {
-//         output += '<li><b>' + key + "</b>: " + data[key] + '</li>';
-        
-//         // добавим к переменной закрывающий тег ul
-//         output += '</ul>';
-//         // выведем в элемент (id = "result") значение переменной output
-//         document.getElementById('myForm').innerHTML = output;
-//     }
-//     // отправляем запрос на сервер
-//     request.send(formData);
 // }
 
 const scoreCount = function(NUMBER_OF_BUTTONS){    
