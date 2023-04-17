@@ -5,15 +5,20 @@ const notRightAnswer = "He верно";
 const rightAnswer = "Верно";
 const form = document.getElementById("myForm");
 const sendResult = document.getElementById("clickMe");
+const formData = new FormData(form);
 let scoreBool;
 
-const allResult = function(){
+const allResult = function(event){
     try{
-        const NUMBER_OF_BUTTONS = document.querySelectorAll(`input[type=radio]:checked`).length; 
-        form.addEventListener('submit', handleForm);
-        scoreCount(NUMBER_OF_BUTTONS);
-        userResult();
+        event.preventDefault();
+        const NUMBER_OF_BUTTONS = document.querySelectorAll(`input[type=radio]:checked`).length; //количество выбранных
+        scoreCount(NUMBER_OF_BUTTONS); // Подсчёт очков
+        userResult(); // Результат теста
         ol.appendChild(li);
+        console.log(Array.from(formData));
+        for (let value of formData.values()) {
+            console.log(value);
+        }
     } catch(error){
         console.log(error);
         alert("Извините, в переданных данных имеется ошибка => check консоль разработчика F12");
@@ -22,13 +27,33 @@ const allResult = function(){
 
 sendResult.addEventListener("click", allResult);
 
+// const ParseData = function(){
+//     // создадим объект FormData и добавим в него данные из формы
+//     const formData = new FormData(document.getElementById("myForm"));
+//     // разбираем строку json, который вернул сервер и помещаем её в переменную data
+//     const data = JSON.parse(this.responseText);
+//     // создаём переменную, в которую будем складывать результат работы (маркированный список)
+//     const output = '<ul>';
+//     for (let key in data) {
+//         output += '<li><b>' + key + "</b>: " + data[key] + '</li>';
+        
+//         // добавим к переменной закрывающий тег ul
+//         output += '</ul>';
+//         // выведем в элемент (id = "result") значение переменной output
+//         document.getElementById('myForm').innerHTML = output;
+//     }
+//     // отправляем запрос на сервер
+//     request.send(formData);
+// }
+
 const scoreCount = function(NUMBER_OF_BUTTONS){    
     for (let i = 1; i < NUMBER_OF_BUTTONS + 1; i++){
         let score = document.querySelector(`input[name="item${i}"]:checked`);
         let scoreValue = score.value;
+        formData.append(`item${i}`, scoreValue);
         if (user.step < NUMBER_OF_BUTTONS){
             switch(scoreValue){
-            case "1": 
+            case "1":    
                 console.log(rightAnswer);
                 user.upStepRight();
                 user.showStep();
@@ -74,8 +99,3 @@ const user = {    // Компонент очков и шагов пользов�
       console.log("--------------------------------------");
     }
 };
-
-const handleForm = function(event){
-    event.preventDefault();
-}
-
