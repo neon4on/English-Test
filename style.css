@@ -14,15 +14,7 @@ form {
   align-items: center;
   text-align:center;
 }
-.a1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 50px;
-}
-
-#clickMe{
+.button{
   background-color: #FFFFFF;
   border: none;
   color: rgba(0, 0, 0, 0.87);
@@ -39,3 +31,15 @@ form {
 .a_False{
   color: rgb(214, 55, 44);
 }
+
+.div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* #clickMe{
+  
+} */
