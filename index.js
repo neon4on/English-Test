@@ -124,7 +124,6 @@ const TEST_TEXT = {
 for (let value of Object.values(TEST_TEXT)) {
     const divNew = document.createElement("div");
     divNew.classList.add("GodDamn");
-    // alert(value); // John, затем 30
     divNew.innerHTML = value;
     div.append(divNew)
 }
